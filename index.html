@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8dbe5">
+  <title>حكايتنا الحلوة</title>
+  <style>
+    :root { color-scheme: light; --pink:#f8dbe5; --deep-pink:#f1bfd0; --brown:#bd8968; --ink:#553d3b; --cream:#fff9f7; }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100svh; overflow-x:hidden; color:var(--ink); font-family: "Segoe UI", Tahoma, sans-serif; background:radial-gradient(ellipse at 50% 35%, #fff0f4 0%, var(--pink) 54%, #f3cbd8 100%); }
+    .hearts { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0 }
+    .heart { position:absolute; bottom:-12vh; color:#bd8968; opacity:0; font-weight:700; animation: float-up linear infinite; filter:drop-shadow(0 3px 5px #79534218); }
+    @keyframes float-up { 0% { transform:translateY(0) rotate(-12deg) scale(.7); opacity:0 } 12% {opacity:.62} 82% {opacity:.56} 100% { transform:translateY(-120vh) rotate(18deg) scale(1.15); opacity:0 } }
+    main { position:relative; z-index:1; width:min(100% - 32px, 680px); margin:0 auto; padding:clamp(44px,10vh,96px) 0 48px; text-align:center }
+    .eyebrow { display:inline-block; padding:8px 15px; border:1px solid #79534230; border-radius:999px; background:#fff8f580; color:#805a4a; font-size:.88rem; letter-spacing:.03em }
+    h1 { margin:21px 0 12px; font-family:Georgia,"Segoe UI",serif; font-size:clamp(2.2rem,8vw,4.2rem); line-height:1.18; color:#704a45 }
+    .intro { max-width:490px; margin:0 auto; color:#775e59; font-size:1.07rem; line-height:1.9 }
+    .timer-card { margin:38px auto 24px; padding:24px clamp(16px,5vw,34px) 27px; border:1px solid #fff9; border-radius:28px; background:#fff9f7c9; box-shadow:0 18px 55px #805a4a18; backdrop-filter:blur(8px) }
+    .timer-label { margin:0 0 18px; font-size:.96rem; color:#86665c }
+    .timer { display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(7px,2vw,16px); direction:ltr }
+    .unit { padding:15px 5px 12px; border-radius:18px; background:#f8e4e8; color:#714c44 }
+    .number { display:block; font-variant-numeric:tabular-nums; font-size:clamp(1.55rem,7vw,2.65rem); font-weight:700; line-height:1.1 }
+    .unit-name { display:block; margin-top:8px; font-size:.79rem; color:#92736b }
+    .question-card { margin-top:24px; padding:25px 22px 27px; border-radius:28px; background:#fff9f7c9; box-shadow:0 18px 55px #805a4a12 }
+    .question-card h2 { margin:0 0 9px; font-size:1.28rem; color:#704a45 }
+    .question-card p { margin:0 auto; max-width:430px; line-height:1.8; color:#856b64 }
+    .sparkle { display:inline-block; margin-bottom:8px; font-size:1.3rem }
+    .playlist { display:block; width:100%; height:352px; margin-top:18px; border:0; border-radius:16px; background:#f3e8eb }
+    .spotify-link { display:inline-block; margin-top:15px; color:#76564b; font-size:.9rem; text-decoration:underline; text-underline-offset:3px }
+    .question-button { display:inline-block; margin-top:18px; padding:13px 24px; border-radius:999px; background:#80574a; color:#fff9f7; text-decoration:none; box-shadow:0 8px 20px #80574a22; transition:transform .2s, background .2s }
+    .question-button:hover { background:#70483d; transform:translateY(-2px) }
+    @media(max-width:420px) { .timer-card { padding-inline:12px } .unit { padding-block:14px 11px } .unit-name { font-size:.7rem } }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important } }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+  <main>
+    <span class="eyebrow">وجودك في حياتي أحلى حاجة حصلتلي</span>
+    <h1>كل لحظة معاكي<br>لها حكاية ❤️</h1>
+    <p class="intro">من وقت ما بدأت حكايتنا، وكل يوم بيعدّي بيخلّيها أحلى.</p>
+    <section class="timer-card" aria-label="الوقت منذ بداية الحكاية">
+      <p class="timer-label">بقالنا سوا</p>
+      <div class="timer" id="timer" aria-live="off">
+        <div class="unit"><span class="number" id="days">0</span><span class="unit-name">يوم</span></div>
+        <div class="unit"><span class="number" id="hours">00</span><span class="unit-name">ساعة</span></div>
+        <div class="unit"><span class="number" id="minutes">00</span><span class="unit-name">دقيقة</span></div>
+        <div class="unit"><span class="number" id="seconds">00</span><span class="unit-name">ثانية</span></div>
+      </div>
+    </section>
+    <section class="question-card">
+      <span class="sparkle" aria-hidden="true">♡</span>
+      <h2>فيه حاجة لطيفة مستنياكي</h2>
+      <a class="question-button" href="questions-page.html">كام سؤال كده على الماشي</a>
+    </section>
+    <section class="question-card">
+      <span class="sparkle" aria-hidden="true">♫</span>
+      <h2>بلاي ليست مخصوصة ليكي</h2>
+      <iframe class="playlist" title="بلاي ليست Spotify" src="https://open.spotify.com/embed/playlist/6x6Z64gAmxf97NTmaYEzis?utm_source=generator&amp;theme=1" width="100%" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <a class="spotify-link" href="https://open.spotify.com/playlist/6x6Z64gAmxf97NTmaYEzis?si=c7317d0c1b904db9" target="_blank" rel="noopener noreferrer">افتحي البلاي ليست في Spotify</a>
+    </section>
+  </main>
+  <script>
+    // الوقت المحلي للقاهرة: ٧ أغسطس ٢٠٢٦، ٢:٢٣ صباحًا (UTC+03:00).
+    const start = new Date('2026-08-07T02:23:00+03:00').getTime();
+    const fields = { days: document.getElementById('days'), hours: document.getElementById('hours'), minutes: document.getElementById('minutes'), seconds: document.getElementById('seconds') };
+    const pad = n => String(n).padStart(2, '0');
+    function updateTimer() {
+      let elapsed = Math.max(0, Date.now() - start);
+      const day = 86400000, hour = 3600000, minute = 60000;
+      const d = Math.floor(elapsed / day); elapsed %= day;
+      const h = Math.floor(elapsed / hour); elapsed %= hour;
+      const m = Math.floor(elapsed / minute); const s = Math.floor((elapsed % minute) / 1000);
+      fields.days.textContent = new Intl.NumberFormat('ar-EG').format(d);
+      fields.hours.textContent = pad(h); fields.minutes.textContent = pad(m); fields.seconds.textContent = pad(s);
+    }
+    updateTimer(); setInterval(updateTimer, 1000);
+    const hearts = document.getElementById('hearts');
+    for (let i = 0; i < 22; i++) {
+      const heart = document.createElement('span'); heart.className = 'heart'; heart.textContent = i % 3 === 0 ? '♥' : '♥';
+      heart.style.left = `${Math.random() * 100}%`; heart.style.fontSize = `${13 + Math.random() * 24}px`;
+      heart.style.animationDuration = `${13 + Math.random() * 17}s`; heart.style.animationDelay = `${-Math.random() * 28}s`;
+      hearts.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

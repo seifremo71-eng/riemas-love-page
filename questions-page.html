@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8dbe5">
+  <title>كام سؤال كده على الماشي</title>
+  <style>
+    :root { --pink:#f8dbe5; --brown:#bd8968; --ink:#553d3b; }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100svh; overflow-x:hidden; color:var(--ink); font-family:"Segoe UI",Tahoma,sans-serif; background:radial-gradient(ellipse at 50% 35%,#fff0f4 0%,var(--pink) 54%,#f3cbd8 100%); }
+    .hearts { position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0 }
+    .heart { position:absolute; bottom:-12vh; color:var(--brown); opacity:0; font-weight:700; animation:float-up linear infinite; }
+    @keyframes float-up { 0% { transform:translateY(0) rotate(-12deg) scale(.7); opacity:0 } 12% {opacity:.62} 82% {opacity:.56} 100% { transform:translateY(-120vh) rotate(18deg) scale(1.15); opacity:0 } }
+    main { position:relative; z-index:1; width:min(100% - 32px,680px); margin:0 auto; padding:clamp(54px,12vh,110px) 0 48px; text-align:center }
+    .eyebrow { display:inline-block; padding:8px 15px; border:1px solid #79534230; border-radius:999px; background:#fff8f580; color:#805a4a; font-size:.88rem }
+    h1 { margin:20px 0 10px; font-size:clamp(2rem,8vw,3.3rem); color:#704a45 }
+    .intro { margin:0 auto; color:#775e59; line-height:1.9 }
+    .card { margin:32px auto 20px; padding:26px clamp(18px,5vw,34px); border:1px solid #fff9; border-radius:28px; background:#fff9f7d9; box-shadow:0 18px 55px #805a4a18; backdrop-filter:blur(8px) }
+    .symbol { display:block; margin-bottom:8px; font-size:1.3rem }
+    .card h2 { margin:0 0 10px; font-size:1.25rem; color:#704a45 }
+    .card p { margin:0; color:#856b64; line-height:1.9 }
+    .question-list { display:grid; gap:14px; margin-top:25px; text-align:right }
+    .question { position:relative; display:flex; align-items:flex-start; gap:14px; padding:17px 18px; border:1px solid #bb8a7040; border-radius:20px; background:linear-gradient(135deg,#fffaf8e8,#f9e8eddf); box-shadow:0 8px 24px #805a4a10; animation:appear .55s both }
+    .question:nth-child(2) { animation-delay:.06s } .question:nth-child(3) { animation-delay:.12s } .question:nth-child(4) { animation-delay:.18s } .question:nth-child(5) { animation-delay:.24s } .question:nth-child(6) { animation-delay:.30s } .question:nth-child(7) { animation-delay:.36s }
+    .q-number { flex:0 0 34px; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:#f1d7df; color:#815747; font-size:.85rem; font-weight:700 }
+    .q-text { padding-top:4px; color:#634741; font-size:1.02rem; line-height:1.8 }
+    @keyframes appear { from { opacity:0; transform:translateY(10px) } to { opacity:1; transform:translateY(0) } }
+    .back { display:inline-block; margin-top:8px; padding:11px 20px; border-radius:999px; background:#80574a; color:#fff9f7; text-decoration:none }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important } }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true" id="hearts"></div>
+  <main>
+    <span class="eyebrow">وجودك في حياتي أحلى حاجة حصلتلي</span>
+    <h1>كام سؤال كده على الماشي 💌</h1>
+    <p class="intro">شوية أسئلة صغيرة، وإجاباتك هتفضل ذكرى حلوة.</p>
+    <section class="card">
+      <span class="symbol" aria-hidden="true">♡</span>
+      <h2>أسئلة صغيرة من قلبي لقلبك</h2>
+      <p>جاوبي براحتك… كل إجابة منك هتبقى ذكرى حلوة عندي 🤎</p>
+      <div class="question-list">
+        <article class="question"><span class="q-number">١</span><span class="q-text">إيه أكتر حاجة نفسك نعملها أول ما نتقابل؟</span></article>
+        <article class="question"><span class="q-number">٢</span><span class="q-text">إيه أكتر حاجة شدتِك ليا؟</span></article>
+        <article class="question"><span class="q-number">٣</span><span class="q-text">إيه أكتر حاجة بتحبيها فيا؟</span></article>
+        <article class="question"><span class="q-number">٤</span><span class="q-text">نفسك نسافر ونروح فين سوا؟</span></article>
+        <article class="question"><span class="q-number">٥</span><span class="q-text">إيه أكتر حاجة بتفكّرك بيا؟</span></article>
+        <article class="question"><span class="q-number">٦</span><span class="q-text">إمتى بدأتي تحسي إنك بتحبيني؟</span></article>
+        <article class="question"><span class="q-number">٧</span><span class="q-text">إمتى غيرتي عليّا؟ ومن مين؟</span></article>
+      </div>
+    </section>
+    <a class="back" href="index.html">ارجعي للصفحة الرئيسية</a>
+  </main>
+  <script>
+    const hearts = document.getElementById('hearts');
+    for (let i=0; i<22; i++) { const h=document.createElement('span'); h.className='heart'; h.textContent='♥'; h.style.left=`${Math.random()*100}%`; h.style.fontSize=`${13+Math.random()*24}px`; h.style.animationDuration=`${13+Math.random()*17}s`; h.style.animationDelay=`${-Math.random()*28}s`; hearts.appendChild(h); }
+  </script>
+</body>
+</html>
+
+
